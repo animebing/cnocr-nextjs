@@ -19,12 +19,16 @@ export default function Home() {
     setImage(null);
   };
 
+  const inputChangeHandler = () => {
+    
+  };
+
   return (
     <main className="h-screen w-full px-8 py-8 md:max-w-4xl md:mx-auto">
       <Hero />
       <TypeOptions />
-      <Uploader />
-      { image && <OcrView /> }
+      <Uploader onChange={inputChangeHandler} />
+      { image && <OcrView image={image} ocrResult={ocrResult} /> }
     </main>
   );
 }
