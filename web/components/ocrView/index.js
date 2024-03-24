@@ -4,7 +4,7 @@ export default ({
 }) => {
   return (
     <div className="mt-6 grid grid-cols-1 md:grid-cols-2 md:gap-8">
-      <div class='flex-col'>
+      <div class='flex-col md:mb-4'>
         <h2 className="mb-2">
           Image
         </h2>
@@ -12,11 +12,11 @@ export default ({
           <img className="object-contain w-full h-full" src={image} alt="uploaded image" />
         </div>
       </div>
-      <div className="flex-col mt-4 md:mt-0">
+      <div className="flex-col mt-4 md:mt-0 md:mb-4">
         <h2 className="mb-2">
           OCR Result
         </h2>
-        <div className="w-full h-96 border-2 rounded-sm p-1">
+        <div className="w-full h-96 border-2 rounded-sm p-1 overflow-auto">
           { ocrResult === null ? (
             <div className="w-full h-full flex items-center justify-center">
               <div>
@@ -25,9 +25,9 @@ export default ({
               </div>
             </div>
           ) : (
-            <p>
-              { ocrResult }
-            </p>
+            <pre>
+              {ocrResult}
+            </pre>
           )}
         </div>
       </div>
