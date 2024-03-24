@@ -1,0 +1,5 @@
+fastapi==0.100.1
+python-multipart==0.0.9
+uvicorn[standard]==0.23.1
+ray[serve]==2.10.0
+cnocr[ort-cpu]==2.3.0.1
