@@ -26,22 +26,20 @@ export default function Home() {
   const submitForm = async (file) => {
     const formData = new FormData()
     formData.append('image', file)
+    formData.append('image_type', imageType.value)
 
     try {
-      // const response = await fetch('/api/upload', {
-      //   method: 'POST',
-      //   body: formData,
-      // })
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
 
-      // if (!response.ok) {
-      //   const errorData = await response.json()
-      //   console.log('response is not ok:', errorData);
-      //   toast.info('response is not ok:', errorData);
-      // }
-      // const { ocr_result } = await response.json()
-
-      await new Promise(r => setTimeout(r, 5000));
-      setOcrResult('Fake OCR Result');
+      if (!response.ok) {
+        setOcrResult('');
+        return;
+      }
+      const { ocr_result } = await response.json()
+      setOcrResult(ocr_result);
     } catch (error) {
       console.log('error in fetch:', error);
       toast.error('error in fetch api');
@@ -57,7 +55,7 @@ export default function Home() {
       const options = {
         maxSizeMB: 5,
         maxWidthOrHeight: 1920,
-        useWebWorker: true
+        useWebWorker: false,  // 'true' will make it very slow in mobile
       }
 
       try {
